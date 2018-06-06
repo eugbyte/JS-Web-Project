@@ -1,0 +1,149 @@
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+}
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+/*NAVIGATION BAR*/
+
+
+.topnav ul{
+    list-style-type: none;  /*remove the bullets*/
+    margin: 0;  /*remove browser default settings, otherwise top and bottom margin will show. This flushes it to the top left*/
+    padding: 0; 
+    overflow: show; /*The overflow property specifies what should happen if content overflows an element's box -- if set to hidden the overflow elements are hidden. However, because of the dropdown menu, you do not want to hide those elements*/
+    background-color: #454545; /*to add the background-color to <ul> instead of each <a> element so that you can have a full-width background color strecthing the entire width of the page*/
+    /*.topnav ul more specific than .topnav, and thus the background color should override that of .topnav*/
+    position: fixed; /*so that the navbar remains on top of the viewport even when scrolling down*/
+    width: 100%; /*When we apply position:fixed to an element, it's taken out of the normal flow of the document, therefore it doesn't respect it's parent's element width. Therefore, must override it by specifying the width as 100% of the parent element, i.e. the document itself*/
+    top: 0; /*If position: absolute; or position: fixed; - the top property sets the top edge of an element to a unit above/below the top edge of its nearest positioned ancestor.If position: static; - the top property has no effect.*/
+
+}
+
+.topnav a {
+    display: block;  /*Displaying the links as block elements makes the whole link area clickable (not just the text), and it allows us to specify padding (and height, width, margins, etc. if you want)*/
+    padding: 14px; /*specify some padding to space out the links <a>. Otherwise, as block elements that are being floated, they will appear right next to one another*/
+    text-align: center;
+    color: white;
+    text-decoration: none;  /*to remove the underline thats is the default style for links <a>*/
+    font-family: "Arial";
+}
+
+li {
+    float: left;    /*because the links <a> are set as block elements, but we still want to make them in a single line, we can use the float property to to get block elements to slide next to each other*/
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover{
+    background-color: #111;
+}
+
+/*To let the user know which navigation link he is at*/
+#active {
+    background-color: #FF9933;  /*id more specific than classes, so should override any CSS applied to the parent container*/
+}
+
+/*dropdown navbar*/
+.dropdown-content {
+    position: absolute;/*if relative, it will just go with the normal flow of the page, and expand the height of the navbar. Position absolute means that (i) the target element is positioned relative to the nearest positioned ancestor, and (ii) it ignores the normal flow of the page*/
+    display: none; /*display: none; is commonly used with JavaScript to hide and show elements without deleting and recreating them.*/
+    z-index: 1; /*so that the dropdown menu is stacked in front of the element directly below which it happens to overlap with*/
+    background-color: #454545;  /*otherwise, the links will have no background color. Why does it not inherit the css property of <ul>?*/
+    width: inherit;     /*not working. Why not inheriting the same width from .dropbtn parent class? Use getElementById.style.width?*/
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}   /*to display the dropdown links upon hover. Displayed as block rather than inline for vertical menu. Also to make the entire area surrounding <a> clickable*/
+/*why is the dropdown content not affect by the overflow: hidden property of the parent container? Because of the specificity?*/
+
+/*media-responsive navbar*/
+/*Taken from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp*/
+
+
+.topnav .icon {
+    float: right; /*working now when display is NOT set to hidden*/
+    color:chartreuse;   /*working now when display is NOT set to hidden*/
+    display: none;
+}
+
+/*To hide certain links and reveal the toggle icon*/
+@media screen and (max-width: 600px) {
+  .topnav a/*:not(#active)*/ {
+      display: none;
+    }  
+    /*The :not(selector) selector matches every element that is NOT the specified element/selector.*/
+    /*The :first-child CSS pseudo-class represents the first element among a group of sibling elements. Does not work here, why?*/
+    /*Therefore, the overall effect is that when the screen is less than 600 pixels wide, hide all the links <a> of .topnav class, except for the first one ("Home").*/
+    /*WHEN :not(#active), .icon DOES NOT SHOW. WHY?/ */
+  
+  .topnav #active {
+      display: block;
+    }   /*because the :not(selector) cannot work, so use this method*/
+  .topnav a.icon {
+    display: block;
+    /*When the screen is less than 600px wide, reveal and display the icon as a block element. Purpose of display: block is to ensure that the icon is by itself and occupy the entire line without competing links*/
+    /*WORKS WHEN THE NOT(SELECTOR) IS NOT USED, BUT DOES NOT WORK ONCE THE NOT(SELECTOR) IS IN USE. WHY? SOMETHING TO DO WITH THE <LI> TAGS? The example on wc3 did not use <li> tags*/
+  }
+}
+
+/*The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .topnav.responsive {   /*don'understand how this .resonsive class is used. HOW DOES .responsive OVERRIDE .topnav? SPECIFICITY? See also https://www.w3schools.com/jsref/prop_html_classname.asp*/
+     position: relative;
+      color: red;
+    }
+  .topnav.responsive a.icon {
+     position: absolute;
+     right: 0;
+     top: 0;
+   }     
+    /*A parent element with relative positioning gives you the control to absolutely position children elements inside of it.*/
+    /*In this case, the child button is set to absolute, and the parent .topnav div is set to relative*/
+    /*the icon is positioned to the top right of the navbar, i.e. the .topnav div*/
+    
+  .topnav.responsive a {
+    display: block; /*so that the links appear on top of one another*/
+    float: none;    /*otherwise, the block elements will collapse into a single line*/
+    text-align: center;
+  }
+}
+
+/*WHY DOES CLICKING THE TOGGLE BUTTON WORK, BUT THE .responsive class APPEARS TO BE INEFFECTIVE?*/
+

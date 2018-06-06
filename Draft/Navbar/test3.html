@@ -1,0 +1,88 @@
+<head>
+   <meta email = "eugenetham1994@gmail.com">
+    
+  <!--keywords for search engine-->
+  <meta name = "Ratione Logica" content= "Legal Technology, legal AI, collaborative contract drafting">
+    
+ <!--CSS Stylesheet-->    
+  <link rel="stylesheet" type="text/css" href="test4.css"/>
+  
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    
+ <title>Ratione Logica</title>
+    
+  <!-- Setting the viewport to make your website look good on all devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container">
+<!--Navigation bar-->
+<!--referred to https://www.w3schools.com/howto/howto_js_topnav.asp-->
+    <div class="topnav" id= "myTopnav">
+      <!--A navigation bar is basically a list of links, so using the <ul> and <li> elements makes sense-->
+      <ul>
+          <li><a id= "active" href="#">Home</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">About</a></li>
+          
+          <!--Dropdown Nabar-->
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Dropdown  <i class="fa fa-caret-down"></i></a>  <!--javascript:void(0) returns undefined. JavaScript void(0) prevents the browser from loading a new page (or refreshing the current page). To prevent unwanted side effects from js functions upon clicking-->
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+         </li>
+       
+        <!--Responsive toggle button-->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+            </a><!--cannot use <li> to enclose this icon. The CSS does not work. WHY DOES ENCLOSING THE .icon IN A <li>tag, LIKE THE REST OF THE <a>, RENDER THE CSS TARGETTING .icon INEFFECTIVE?  -->
+      
+        
+      </ul> <!--the <ul> is problematic. When you exclude .icon from <ul>, does not work-->
+    </div>
+      
+<!--carousell-->
+    <div class="carousel">
+      <h2>Carousell</h2>
+         </div>
+      
+<!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+      
+<!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+<!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+</div>  <!--end of .container grid class-->
+
+
+<script>
+   /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    //from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp
+function myFunction() {
+    var x = document.getElementById("myTopnav");    //get the div element with id #myTopNav
+    if (x.className === "topnav") {
+        x.className += "responsive";    //className gets and sets the value of the class attribute of the specified element.
+        //add the responsive class to the className. HOW DOES ADDING THE CLASS .responsive (AS OPPOSED TO EQUATING) CHANGE ANYTHING? Shouldn't it just be merely "="
+    } else {
+        x.className = "topnav";     //If the user had already invoked the function before, the className would have been changed to "responsive". If this is the case, change the className backk to "topnav".
+    }
+}
+</script>
+
+</body>

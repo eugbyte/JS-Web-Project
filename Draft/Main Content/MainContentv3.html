@@ -1,0 +1,96 @@
+<head>
+   <meta email = "eugenetham1994@gmail.com">
+    
+  <!--keywords for search engine-->
+  <meta name = "Ratione Logica" content= "Legal Technology, legal AI, collaborative contract drafting">
+    
+ <!--CSS Stylesheet-->    
+  <link rel="stylesheet" type="text/css" href="mainContentv3.css"/>
+
+    
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    
+ <title>Ratione Logica</title>
+    
+  <!-- Setting the viewport to make your website look good on all devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container">
+<!--Navigation bar-->
+    <div class="topnav" id= "myTopnav">
+        <h2>Navbar</h2>   
+    </div>
+      
+<!--carousell-->
+    <div class="carousel">
+        <h2>Carousel</h2>
+        
+  </div>
+      
+<!--Product 1 on the left-->
+    <div class="left">
+      <h2>Left</h2>
+      <img src="imgLeft.png" alt="from https://zapier.com/blog/writing-editing-apps">
+      <h4 id="estimateLeft">Average reading time: __min</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec dapibus ligula. Mauris at tincidunt diam. Nullam purus risus, cursus sit amet ante eget, pulvinar laoreet leo. Vestibulum vulputate ligula sodales ante semper semper. Donec ac turpis sit amet lectus mattis ornare. Sed scelerisque tristique massa, id dapibus lacus. Donec quis ex a tortor cursus consequat non vitae ligula. Quisque non dolor at felis ultrices interdum at eget elit.</p>
+      <p>This is the second paragraph</p>
+    </div>
+      
+<!--Product 2 on the right-->
+    <div class="right">
+      <h2>Right</h2>
+      <img src="imgRight.jpg" alt="from https://abovethelaw.com/2017/07/legal-research-and-ai-looking-toward-the-future/">
+      <h4 class="estimateRight">Average reading time: __min</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec dapibus ligula. Mauris at tincidunt diam. Nullam purus risus, cursus sit amet ante eget, pulvinar laoreet leo. Vestibulum vulputate ligula sodales ante semper semper. Donec ac turpis sit amet lectus mattis ornare. Sed scelerisque tristique massa, id dapibus lacus. Donec quis ex a tortor cursus consequat non vitae ligula. Quisque non dolor at felis ultrices interdum at eget elit.</p>
+      <p>This is the second paragraph</p>
+    </div>
+    
+<!--Form Intercom-->
+    <form class = "intercom">
+      <h2>Form</h2>
+    </form>
+
+<!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+</div>  <!--end of .container grid class-->
+
+
+<script>
+//WORD COUNT ESTIMATOR
+//https://medium.freecodecamp.org/three-ways-to-find-the-longest-word-in-a-string-in-javascript-a2fb04c9757c
+//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_getelementsbytagname3
+
+//getElementByClassName returns a quasi-array of element belonging to the same class, e.g. [[a, b, c], [d, e,]]
+
+var wordArrayLeft = document.getElementsByClassName("left")[0].getElementsByTagName("P");
+
+console.log(wordArrayLeft); //what does it log? HTMLCollection[p]0: plength: 1__proto__: HTMLCollection
+
+var wordArrayRight = document.getElementsByClassName("right")[0].getElementsByTagName("P");
+
+console.log(wordArrayRight);
+
+function calcTime(wordArray, id) {
+  var accumulator = 0;
+  for (i = 0; i < wordArray.length; i++) {
+    var splitedArray = wordArray[i].split(" "); //returns an array consisting of the paragrpah words, e.g. ["lorem", "ipsum"] without the whitespace
+    accumulator += splitedArray.length; //return the length of the array, which is the number of words in the paragraph. Shove the value into the accumulator
+  }
+document.getElementById(id).innerHTML = "Average reading time " + accumulator; //now need to print the words back into the page
+}
+
+calcTime(wordArrayLeft, "estimateLeft");
+calcTime(wordArrayRight, "estimateRight");
+
+
+  
+</script>
+
+</body>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--For mobile viewport-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta email="eugenetham1994@gmail.com">
+
+  <!--keywords for search engine-->
+  <meta name="Ratione Logica" content="Legal Technology, legal AI, collaborative contract drafting">
+
+  <!--CSS Stylesheet-->
+  <!--IGNORE FIRST<link rel="stylesheet" type="text/css" href="navbar5.css" />-->
+
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>Ratione Logica</title>
+
+  <style>
+    /*CSS GRID*/
+
+    .container {
+      display: grid;
+      position: relative;
+      margin: auto;
+      grid-gap: 10px;
+      grid-template-areas: "topnav topnav" "carousel carousel" "left right" "footer footer";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+      justify-content: center;
+    }
+
+    .topnav {
+      grid-area: topnav;
+    }
+
+    .carousel {
+      background-color: cornflowerblue;
+      grid-area: carousel;
+    }
+
+    .left {
+      background-color: cornflowerblue;
+      grid-area: left;
+    }
+
+    .right {
+      background-color: beige;
+      grid-area: right;
+    }
+
+    footer {
+      background-color: beige;
+      grid-area: footer;
+    }
+
+    /*NAVIGATION BAR*/
+
+    body {
+      margin: 0;
+      font-family: Arial
+    }
+
+    .topnav {
+      overflow: hidden;
+      /*The overflow property specifies what should happen if content overflows an element's box -- if set to hidden the overflow elements are hidden. WILL THE OVERFLOW PROPERTY AFFECT THE DROPDOWN MENU?--YES. SO HOW DID WC3 MAKE THEIR DROPDOWN MENU WORK EVEN WITH overflow: hidden?*/
+      background-color: #333;
+      /*to add the background-color to <ul> instead of each <a> element so that you can have a full-width background color strecthing the entire width of the page*/
+    }
+
+    .topnav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      position: fixed;
+      /*this is the problematic line -- this is what makes the responsiveness of the navbar buggy. the fixed element is removed from the document flow and ignores the elements below, overlapping them when you expand the navbar.  When changed to position relative, the navbar works*/
+      /*When we apply position:fixed to an element, it's taken out of the normal flow of the document, therefore it doesn't respect it's parent's element width. Therefore, must override it by specifying the width as 100% of the parent element, i.e. the document itself*/
+      width: 100%;
+      top: 0;
+      /*If position: absolute; or position: fixed; - the top property sets the top edge of an element to a unit above/below the top edge of its nearest positioned ancestor.If position: static; - the top property has no effect.*/
+    }
+
+    .topnav a {
+      float: left;
+      /*because the links <a> are set as block elements, but we still want to make them in a single line, we can use the float property to to get block elements to slide next to each other*/
+      display: block;
+      /*Displaying the links as block elements makes the whole link area clickable (not just the text), and it allows us to specify padding (and height, width, margins, etc. if you want)*/
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      /*specify some padding to space out the links <a>. Otherwise, as block elements that are being floated, they will appear right next to one another*/
+      /*top bottom is 14px, left right is 16px*/
+      text-decoration: none;
+      /*to remove the underline thats is the default style for links <a>*/
+      font-size: 17px;
+    }
+
+    /*.topnav li {
+      float: left;  
+    /*When you float li to the left, the responsiveness function cannot work. Why?
+    }*/
+
+    /*To let the user know which navigation link he is at*/
+
+    .active {
+      background-color: #FF9933;
+      color: white;
+    }
+
+    .topnav .icon {
+      display: none;
+    }
+
+    /*dropdown navbar*/
+
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 17px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      /*if relative, it will just go with the normal flow of the page, and expand the height of the navbar. Position absolute means that (i) the target element is positioned relative to the nearest positioned ancestor, and (ii) it ignores the normal flow of the page*/
+      background-color: #f9f9f9;
+      /*otherwise, the links will have no background color. Why does it not inherit the css property of <ul>?*/
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      /*so that the dropdown menu is stacked in front of the element directly below which it happens to overlap with*/
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      /*to display the dropdown links upon hover. Displayed as block rather than inline for vertical menu. Also to make the entire area surrounding <a> clickable*/
+      /*why is the dropdown content not affect by the overflow: hidden property of the parent container? Because of the specificity?*/
+      text-align: left;
+    }
+
+    /*upon hovering over each <a>link on .topnav, the .dropdown button and  the toggle .dropbtn, change the background color as follow*/
+
+    .topnav a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: #555;
+    }
+
+    /*previous hover targets the dropdown button, this here targets the <a> links within the dropdown button*/
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav a:not(.active),
+      /*The :not(selector) selector matches every element that is NOT the specified element/selector.*/
+      /*The :first-child CSS pseudo-class represents the first element among a group of sibling elements. Does not work here, WHY? CANNOT USE FIRST-CHILD BECAUSE FIRST CHILD REFERS TO <li>*/
+      /*Therefore, the overall effect is that when the screen is less than 600 pixels wide, hide all the links <a> of .topnav class, except for the first one ("Home").*/
+      /*cannot use first-child because first-child is <li>, so use this method*/
+      
+      .dropdown .dropbtn {
+        display: none;
+        /*If ommitted, the responsive is affected. WHY?*/
+      }
+      .topnav a.icon {
+        float: right;
+        display: block;
+        /*When the screen is less than 600px wide, reveal and display the icon as a block element. Purpose of display: block is to ensure that the icon is by itself and occupy the entire line without competing links*/
+        /*WORKS WHEN THE NOT(SELECTOR) IS NOT USED, BUT DOES NOT WORK ONCE THE NOT(SELECTOR) IS IN USE. WHY? SOMETHING TO DO WITH THE <LI> TAGS? The example on wc3 did not use <li> tags*/
+      }
+    }
+    
+    
+   @media screen and (max-width: 600px) {
+     /*The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes display the links vertically instead of horizontally) */
+      /*From StackOverflow. In class="A B", that's actually two classes in a single attribute. The space is not part of a class name; it acts as the separator.You never include a space when chaining class selectors, not even like this: .A .B*/
+      .topnav.responsive {
+        position: relative;
+      }
+
+      .topnav.responsive ul {
+        position: relative;
+        /*change from position fixed to position relative otherwise navbar becomes buggy when expanded - ignores document flow and overlaps*/
+      }
+
+      .topnav.responsive .icon {
+        position: absolute;
+        /*A parent element with relative positioning gives you the control to absolutely position children elements inside of it.*/
+        /*In this case, the child button is set to absolute, and the parent .topnav div is set to relative*/
+        /*the icon is positioned to the top right of the navbar, i.e. the .topnav div*/
+        right: 0;
+        top: 0;
+      }
+      .topnav.responsive a {
+        float: none;
+        /*so that the links appear on top of one another*/
+        display: block;
+        /*otherwise, the block elements will collapse into a single line*/
+        text-align: left;
+      }
+      .topnav.responsive .dropdown {
+        float: none;
+        /*you do not wish for the element to float. So that the links will appear on top of one another*/
+      }
+      .topnav.responsive .dropdown-content {
+        position: relative;
+        /*If set to position absolute, then links 2 and link 3 will not show. Because if positioned absolutely, will disrupt the normal flow of the page. The relative positioned element will now appear on top of any other statically positioned element, thereby stretching the parent container instead of disruptign it*/
+      }
+      .topnav.responsive .dropdown .dropbtn {
+        display: block;
+        /*works when set to display: initial (default value) too*/
+        /*if ommitted, i.e. either display: block or display: initial, the droppdown <a> and its child links will not show at all. WHY?*/
+        width: 100%;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!--Navigation bar-->
+  <!--referred to https://www.w3schools.com/howto/howto_js_topnav.asp-->
+  <div class="container">
+    <!--A navigation bar is basically a list of links, so using the <ul> and <li> elements makes sense-->
+    <div class="topnav" id="myTopnav">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+
+        <!--Dropdown Nabar-->
+        <li class="dropdown">
+          <button class="dropbtn">Dropdown <i class="fa fa-caret-down"></i>
+            <!--javascript:void(0) returns undefined. JavaScript void(0) prevents the browser from loading a new page (or refreshing the current page). To prevent unwanted side effects from js functions upon clicking. For prudential purpose.-->
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </li>
+
+        <!--Responsive toggle button-->
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        <!--cannot use <li> to enclose this icon. The CSS does not work. WHY DOES ENCLOSING THE .icon IN A <li>tag, LIKE THE REST OF THE <a>, RENDER THE CSS TARGETTING .icon INEFFECTIVE? Online examples also excluded the toggle button form li  -->
+      </ul>
+    </div>
+
+
+    <!--Carousell-->
+    <div class="carousel">
+      <h2>Carousel</h2>
+
+    </div>
+
+    <!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+
+    <!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+    <!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+  </div>
+  <!--end of .container grid class-->
+
+
+
+  <script>
+    //Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon 
+    //from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+        //THE SPACE IN " responsive" AS CF TO "responsive" IS IMPORTANT--OTHERWISE THE CODE WILL NOT WORK. This is because you are ultimately changing the className to "topnav responsive", which can be invoked through CSS as .topnav.responsive, not "topnavresponsive".
+        //className gets and sets the value of the class attribute of the specified element.
+        //className is now "topnav responsive", which can be invoked through css as .topnav.responsive, but not .topnav .responsive with space in between.
+        //the rationale of adding to the className instead of overriding it, i.e. setting it to .responsive, is that you still want to inherit the .topnav CSS qualities to the extent that it does not conflict with .topnav .responsive.
+        //*.topnav .reponsive will overide .topnav due to specificity?
+      } else {
+        x.className = "topnav";
+        //If the user had already invoked the function before, the className would have been changed to "topnav responsive". If this is the case, change the className back to "topnav".
+      }
+    }
+  </script>
+
+</body>
+
+</html>
