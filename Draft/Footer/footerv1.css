@@ -1,0 +1,110 @@
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "form form"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 0.5fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+}
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+.intercom {
+  background-color: cornflowerblue;
+  grid-area: form;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+  position: relative;
+  padding: 5px 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-areas: 
+                        "topnav"
+                        "carousel"
+                        "left"  /*.left will be placed on top of .right*/
+                        "right"
+                        "form"
+                        "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr; 
+  }
+}
+
+/*FOOTER*/
+footer > p {
+  display: inline;  /*to sit on the same line as the icons*/
+  color: darkblue;
+}
+
+.social_icons {
+  display: inline-block;  /*to sit on the same line as <p>. Secondly, inline-block respects padding.*/
+  float: right;
+  
+}
+
+.social_icons .fa {
+  padding: 5px;  /*to create space between each icon and their respective border, i.e. increase the backgroudn size of the icon*/
+  margin-right: 15px;
+  text-align: center; /*to center the icons, e.g. the "f" for facebook is centered within the blue square*/
+  text-decoration: none;  /*get rid of the underlines*/
+  font-size: 20px;  /*doesnt work when you insert it under .fa instead of .social_icons. WHY?*/
+  width: 20px;  /*set it the same as font-size (height) to make a sqaure*/
+  border-radius: 50% /*make a circle*/
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa.fa-instagram {
+  color: white;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+}
+

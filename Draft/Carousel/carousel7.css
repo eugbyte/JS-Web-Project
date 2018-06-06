@@ -1,0 +1,117 @@
+/*CSS GRID*/
+
+.container {
+  display: grid;
+  position: relative;
+  margin: auto;
+  grid-gap: 10px;
+  grid-template-areas: "topnav topnav" "carousel carousel" "left right" "footer footer";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 1fr 0.5fr 0.25fr;
+  /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+  justify-content: center;
+}
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+  background-color: cornflowerblue;
+  grid-area: carousel;
+  position: relative;
+  /*to center the buttons so that the button that .carousel as its parent, rather than the entire document*/
+}
+
+.left {
+  background-color: cornflowerblue;
+  grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+/*Carousell*/
+
+img {
+  height: 400px;
+  width: 100%;
+  /*full width of the parent container*/
+  position: relative;
+  /*IMPT! if positioned absolute, the elements will ignore one another and overlap/pile on top of one another. The second purpose is to allow the child button to be positioend absolutely with reference to the parent container and not the document. 
+  The .div container takes the shape of the img element*/
+  display: inline;
+  /*block: so that the images appear in their own line. For testing purposes, will remove. In any case, it is overriden by the showDiv() function.*/
+  margin: 0 auto;
+  /*center the image*/
+}
+
+/*CSS double class selector. Use a common class selector of .button, and corresponding classes of .button.previous and .button.next*/
+
+.button {
+  font-size: 48px;
+  position: absolute;
+  /*recall concept of relative child within absolute parent*/
+  /*testing purposes*/
+  top: 50%;
+  opacity: 1;
+  background-color: transparent;
+  color: white;
+  border: black;
+  animation-duration: 1s;  
+  /*The animation-duration property defines how long time an animation should take to complete. If the animation-duration property is not specified, no animation will occur, because the default value is 0s (0 seconds). */
+  animation-delay: 0.75s;
+  /*The animation-delay property specifies a delay for the start of an animation.*/
+  animation-fill-mode: forwards;
+  /*The animation-fill-mode property specifies a style for the target element when the animation is not playing (before it starts, after it ends, or both).forwards The forwards property means that the element will retain the style values that is set by the last keyframe*/
+  animation-timing-function: ease;
+  /* The animation-timing-function property specifies the speed curve of the animation. Linear - "ease" ease - specifies an animation with a slow start, then fast, then end slowly (this is default)*/
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button.previous {
+  left: 40px;
+  animation-name: previous;
+}
+
+@keyframes previous {
+  from {
+    left: 40px;
+    font-size: 48px;
+  }
+  to {
+    left: 10px;
+    font-size: 60px;
+  }
+}
+
+.button.next {
+  right: 40px;
+  animation-name: next;
+}
+
+@keyframes next {
+  from {
+    right: 40px;
+    font-size: 48px;
+  }
+  to {
+    right: 10px;
+    font-size: 60px;
+  }
+}
+
+
+
+

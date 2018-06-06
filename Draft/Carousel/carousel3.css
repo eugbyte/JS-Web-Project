@@ -1,0 +1,69 @@
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 1fr 0.5fr 0.25fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+    position: relative;   /*to center the buttons so that the button that .carousel as its parent, rather than the entire document*/
+}
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+/*Carousell*/
+img {
+  height: 400px;
+  width: 100%;  /*full width of the parent container*/
+  position: relative;   /*if positioned absolute, the elements will ignore one another and overlap/pile on top of one another*/
+  display: inline;   /*block: so that the images appear in their own line. For testing purposes, will remove*/
+  margin: 0 auto; /*center the image*/
+  
+}
+
+/*CSS double class selector. Use a common class selector of .button, and corresponding classes of .button.previous and .button.next*/
+.button {
+  font-size: 48px;
+  position: absolute;   /*recall concept of relative child within absolute parent*/
+  color: red; /*testing purposes*/
+}
+
+.button.previous {
+  left: 10px;
+  top: 50%;
+}
+
+.button.next {
+  right: 10px;
+  top: 50%;
+}
+

@@ -1,0 +1,89 @@
+/*CSS GRID*/
+
+.container {
+  display: grid;
+  position: relative;
+  margin: auto;
+  grid-gap: 10px;
+  grid-template-areas: "topnav topnav" "carousel carousel" "left right" "form form" "footer footer";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr 0.5fr;
+  /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+  justify-content: center;
+}
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+  background-color: cornflowerblue;
+  grid-area: carousel;
+}
+
+.left {
+  background-color: cornflowerblue;
+  grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+.intercom {
+  background-color: beige;
+  grid-area: form;
+  padding: 0 20px;
+}
+
+/*The [attribute*=value] selector matches every element whose attribute value containing a specified value.*/
+
+input[type=text],
+textarea {
+  box-sizing: border-box;
+  /*The box-sizing property defines how the width and height of an element are calculated: should they include padding and borders, or not. When set to "border-box", 	The width and height properties (and min/max properties) includes content, padding and border.*/
+  width: 100%;
+  /*so that each input occuy their own line. Further it is to make the form repsonsive*/
+  display: inline-block;
+  /*allow the input to behave like inline elements, i.e. allow other elements to sit on its left and right. However, additional adv over inline is that it respect top and bottom margin, and allow you to set heigh and width. These adv important for spacing out the form*/
+  /*why not just use block*/
+  padding: 12px 20px;
+  /*to space out between the border and the input placeholder*/
+  /*Use the padding property to add space inside the text field.*/
+  margin: 8px 0;
+  /*to add top and bottom margin between the labels and the input*/
+  border-radius: 8px;
+  /*to make roundish corners on all 4 corners of the input*/
+  border: 1px solid grey;
+}
+
+input[type=submit] {
+  width: 25%;
+  background-color: #FF9933;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px auto;
+  /*why is text not centered? Because you need to specify as block element. Inline elements and inline-block elements do not respect the side margins.*/
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  /*The cursor property specifies the mouse cursor to be displayed when pointing over an element. The pointer property indicates that the pointer is to be tranformed into a hand when moused over the area*/
+  font-size: 15px;
+}
+
+textarea {
+  height: 150px;
+  resize: none;
+  /*Use the resize property to prevent textareas from being resized (disable the "grabber" in the bottom right corner)*/
+}
+
+input[type=submit]:hover {
+  opacity: 0.75;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}

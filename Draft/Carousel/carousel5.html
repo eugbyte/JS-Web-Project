@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>W3.CSS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta email="eugenetham1994@gmail.com">
+
+  <!--keywords for search engine-->
+  <meta name="Ratione Logica" content="Legal Technology, legal AI, collaborative contract drafting">
+
+  <!--CSS Stylesheet-->
+  <link rel="stylesheet" type="text/css" href="carousel5.css" />
+
+
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+
+  <div class="container">
+    <!--Navigation bar-->
+    <div class="topnav" id="myTopnav">
+      <h2>Navbar</h2>
+      <h3>carousel below</h3>
+    </div>
+
+    <!--Carousell-->
+    <!--With reference to https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+    <div class="carousel">
+
+      <!--the images-->
+      <img class="mySlides" src="img1.jpg" alt="https://tinyurl.com/ybmoux75">
+      <!--img1-->
+      <img class="mySlides" src="img2.jpg" alt="https://tinyurl.com/y7q4c666">
+      <!--img2-->
+      <img class="mySlides" src="img3.jpg" alt="https://tinyurl.com/y9pxsnrj">
+      <!--img3-->
+
+      <!--The Buttons-->
+      <button class="button previous" id="previous" onclick="plusDivs(-1)"><i class="fas fa-chevron-left"></i></button>
+      <button class="button next" id="next" onclick="plusDivs(-1)"><i class="fas fa-chevron-right"></i></button>
+
+      <!--onclick="plusDivs(-1)"-->
+
+      <!--<button class="button previous">&#10094;</button>
+  <button class="button next">&#10095;</button>
+    <!--the &#10094 represents the HTML code for ASCII Arrows--!>
+    <!--on click, execute plusDiv(n)-->
+    </div>
+
+    <!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+
+    <!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+    <!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+
+
+  </div>
+  <!--end of .container-->
+
+  <script>
+    var slideIndex = 1;
+    //set the slideIndex to 1
+
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    } //When the user clicks one of the buttons, call plusDivs().The plusDivs() function subtracts one or  adds one to the slideIndex. Subsequently, the value of slideIndex is passed into showDiv().
+
+    //The showDivs() display an element of the quasi-array, [i]-1. 
+    function showDivs(n) {
+      var x = document.getElementsByClassName("mySlides");
+      //returns a quasi-array of elements of .mySlides class. Recall that there are 3 images, img1, img2, img3.
+      if (n > x.length) {
+        slideIndex = 1;
+      };
+      //If the slideIndex is higher than the number of elements (x.length), the slideIndex is set to 1. However, because of the last-line of the showDivs() function, i.e. x[slideInex-1] the slideIndex effectively reduces by [1] to [0]. Therefore, img1 is displayed.
+      if (n < 1) {
+        slideIndex = x.length;
+      };
+      //If the slideIndex is less than 1 it is set to number of elements (x.length).
+      //so if the user clicks previous when slideIndex is 0, the slideIndex will be set to 3. Upon the last line x[slideIndex-1], the slideIndex will reduce to 2, calling the last array [2].
+      for (i = 0; i < x.length; i++) { //for every element in the quasi-array...
+        x[i].style.display = "none";
+        //Hides (display="none") all elements with the class name "mySlides"
+        //the .style property targets the CSS property of the element, and the .display targets the display property of the element
+      };
+      x[slideIndex - 1].style.display = "block";
+      //Only display (display="block") the element with the given slideIndex, while the rest of the elements remaining hidden. 
+    };
+
+    showDivs(slideIndex);
+    //When showDivs() is executed for the first time when the page load, before clicking the buttons, the img to be displayed will be that of [0].All images in the quasi-array are hidden except for n-1. See the last line of showDivs() -- x[slideIndex-1], i.e. 1-1 = [0].
+    //If placed before defining what showDiv() is, like what WC3 did, then essentially it is hoisting. JS allow elements to be invoked before defining them due to 2 stage creation and execution context. plusDiv() and showDics() are created at the creation context context. Will be executed later upon click. 
+
+    
+    //INTERACTING WITH THE DOM--NOT WORKING, THE BUTTONS ARE RELYING ON THE INLINE HTML DOM OF "onclick".
+    //var previous = document.getElementById("previous");
+    //var next = document.getElementById("next");
+    // NOT EVEN WORKING! 
+
+    //previous.addEventListener("click", alert("Previous"));
+    //next.addEventListener("click", alert("Next!"));
+    //NOT EVEN WORKING, ALERTS ON PAGE LOAD INSTEAD OF ON CLICK
+
+
+
+    //If you use .getElementByClassName(). For example,
+    //var buttonS = document.getElementsByClassName("button");
+    //returns a quasi-array of elements belonging to .button class
+    //<button class="button next"
+    //buttonS[0].addEventListener("click", alert("Previous!"));
+    //buttonS[1].addEventListener("click", alert("Next!"); console.log(buttonS[0]);
+    //logs <button class="button previous"
+    //console.log(buttonS[1]);
+    //logs <button class="button next"
+    //WHY CANNOT INVOKE ADDEVENTLISTENER BEFORE SETTING THE SLIDEINDEX VAR TO 1? According to Chrome console, return undefined. Recall hositing does not work for expressions, i.e. var x = n; 
+    //END OF INTERACTION WITH THE DOM
+
+  </script>
+
+</body>
+
+</html>

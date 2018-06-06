@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="#">
+  <!--https://www.w3schools.com/w3css/4/w3.css-->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+<body>
+  
+<div class="container">
+<!--Navigation bar-->
+    <div class="topnav" id= "myTopnav">
+        <h2>Navbar</h2>
+      <h3>carousel below</h3>
+    </div>
+      
+<!--carousell-->
+<!--Taken from https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+<div class="carousel">
+  
+  <img class="mySlides" src="img1.jpg" style="width:100%">
+  <img class="mySlides" src="img2.jpg" style="width:100%">
+  <img class="mySlides" src="img3.jpg" style="width:100%">
+  <!--img is inline by default. use 100% to give a block quality-->  
+  
+  <!--The Buttons-->
+  <button class="button previous" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="button next" onclick="plusDivs(1)">&#10095;</button>
+</div>
+      
+<!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+      
+<!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+<!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+
+
+</div><!--end of .container-->
+
+<style>
+  
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 1fr 0.5fr 0.25fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+    position: relative;   /*to center the buttons so that the button that .carousel as its parent, rather than the entire document*/
+}
+
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+  /*Carousel*/
+    .button {
+    font-size: 48px;
+    position: absolute;   /*recall concept of relative child within absolute parent*/
+    color: red; /*testing purposes*/
+  }
+
+  .button.previous {
+    left: 10px;
+    top: 50%;
+  }
+
+  .button.next {
+    right: 10px;
+    top: 50%;
+  }
+
+  
+  </style>
+  
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
+</body>
+</html>
+  

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+   <meta email = "eugenetham1994@gmail.com">
+    
+  <!--keywords for search engine-->
+  <meta name = "Ratione Logica" content= "Legal Technology, legal AI, collaborative contract drafting">
+    
+ <!--CSS Stylesheet-->    
+  <link rel="stylesheet" type="text/css" href="carousel3.css"/>
+
+    
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    
+ <title>Ratione Logica</title>
+    
+  <!-- Setting the viewport to make your website look good on all devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="container">
+<!--Navigation bar-->
+    <div class="topnav" id= "myTopnav">
+        <h2>Navbar</h2>
+      <h3>carousel below</h3>
+    </div>
+      
+<!--Carousell-->
+<!--With reference to https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+    <div class="carousel">
+      
+      <!--the images-->
+      <img class="mySlides" src="img1.jpg" alt="https://tinyurl.com/ybmoux75"> <!--img1-->
+      <img class="mySlides" src="img2.jpg" alt="https://tinyurl.com/y7q4c666"><!--img2-->
+      <img class="mySlides" src="img3.jpg" alt= "https://tinyurl.com/y9pxsnrj"><!--img3-->
+      
+      <!--the forward and next buttons-->
+      <button class = "button previous"><!--text here--><i class="fa fa-arrow-left"></i></button>
+      <button class = "button next"><!--text here--><i class="fa fa-arrow-right"></i></button>
+        
+  </div>
+      
+<!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+      
+<!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+<!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+  
+</div>  <!--end of .container grid class-->
+
+
+<script>
+
+  
+var slideIndex = 1;   //set the slideIndex to 1
+  
+showDivs(slideIndex);   //Then call showDivs() to display the first element  of the quasi-array. See the last line of showDivs() -- x[slideIndex-1], i.e. 1-1 = [0].
+  
+//Hoisting! JS allow elements to be invoked before defining them due to 2 stage creation and execution context. plusDiv() and showDics() are created at the creation context context. Will be executed later upon click.
+
+
+  
+  
+//When the user clicks one of the buttons call plusDivs().The plusDivs() function subtracts one or  adds one to the slideIndex.
+function plusDivs(n) {  
+    showDivs(slideIndex += n);  
+}  
+
+
+//INTERACTING WITH THE DOM    
+var buttonS= document.getElementsByClassName("button");  //returns a quasi-array of elements belonging to .button class
+//<button class="button next"
+//The problem is most likely here, SOMETHING WRONG WITH THIS addEventListener code. When used HTML attribute (<button onclick=func>) to register the HTML event handler instead of using addEventListener, the carousel worked.Problem might do with the execution stack
+  //The HTML attribute method is :
+  //<button class="button previous" onclick="plusDivs(-1)">&#10094;</button>
+  //<button class="button next" onclick="plusDivs(1)">&#10095;</button>
+buttonS[0].addEventListener("click", plusDivs(-1));
+buttonS[1].addEventListener("click", plusDivs(1));
+console.log(buttonS[0]);  
+//<button class="button previous"
+console.log(buttonS[1]);  
+//WHY CANNOT INVOKE ADDEVENTLISTENER BEFORE SETTING THE SLIDEINDEX VAR TO 1? According to Chrome console, return undefined. Recall hositing does not work for expressions, i.e. var x = n; 
+//END OF INTERACTION WITH THE DOM
+    
+
+    
+function showDivs(n) {
+    var x = document.getElementsByClassName("mySlides");  //returns a quasi-array of elements of .mySlides class
+    if (n > x.length) {slideIndex = 1}; //If the slideIndex is higher than the number of elements (x.length), the slideIndex is set to 1. However, because of the last-line of the showDivs() function, i.e. x[slideInex-1] the slideIndex effectively reduces by 1 to 0. Therefore, img1 is displayed.
+    if (n < 1) {slideIndex = x.length}; //If the slideIndex is less than 1 it is set to number of elements (x.length).
+    //so if the user clicks previous when slideIndex is 0, the slideIndex will be set to 3. Upon the last line x[slideIndex-1], the slideIndex will reduce to 2, calling the last array [2].
+    for (i = 0; i < x.length; i++) {  //for every element in the quasi-array...
+        x[i].style.display = "none";  //Hides (display="none") all elements with the class name "mySlides"
+        //the .style property targets the CSS property of the element, and the .display targets the display property of the element
+    };
+    x[slideIndex-1].style.display = "block";  //Only display (display="block") the element with the given slideIndex, while the rest of the elements remaining hidden. 
+};
+
+showDivs(slideIndex);
+  
+</script>
+
+</body>
+</html>

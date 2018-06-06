@@ -1,0 +1,60 @@
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "form form"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 0.5fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+}
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+.intercom {
+  background-color: cornflowerblue;
+  grid-area: form;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    grid-template-areas: 
+                        "topnav"
+                        "carousel"
+                        "left"  /*.left will be placed on top of .right*/
+                        "right"
+                        "form"
+                        "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr; 
+  }
+}

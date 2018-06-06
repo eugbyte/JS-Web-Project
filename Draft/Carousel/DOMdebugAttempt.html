@@ -1,0 +1,133 @@
+<html>
+<head>
+
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  
+  <!--CSS Stylesheet-->
+<style>
+.carousel {
+  background-color: cornflowerblue;
+  grid-area: carousel;
+  position: relative;
+  /*to center the buttons so that the button that .carousel as its parent, rather than the entire document*/
+}
+  img {
+  height: 400px;
+  width: 100%;
+  /*full width of the parent container*/
+  position: relative;
+  /*IMPT! if positioned absolute, the elements will ignore one another and overlap/pile on top of one another. The second purpose is to allow the child button to be positioend absolutely with reference to the parent container and not the document. 
+  The .div container takes the shape of the img element*/
+  /*display: inline;*/
+  /*block: so that the images appear in their own line. For testing purposes, will remove. In any case, it is overriden by the showDiv() function.*/
+  margin: 0 auto;
+  /*center the image*/
+}
+
+/*CSS double class selector. Use a common class selector of .button, and corresponding classes of .button.previous and .button.next*/
+
+.button {
+  font-size: 48px;
+  position: absolute;
+  /*recall concept of relative child within absolute parent*/
+  /*testing purposes*/
+  top: 50%;
+  opacity: 1;
+  background-color: transparent;
+  color: white;
+  border: black;
+}
+  
+  .button:hover {
+  cursor: pointer;
+}
+
+  .button.previous {
+  left: 20px;
+}
+  .button.next {
+  right: 20px;
+}
+</style>
+
+
+
+
+</head>
+
+<body>
+  
+
+  
+  <div class="carousel">
+    <!--the images-->
+    <img class="mySlides" src="img1.jpg" alt="https://tinyurl.com/ybmoux75">
+    <!--img1-->
+    <img class="mySlides" src="img2.jpg" alt="https://tinyurl.com/y7q4c666">
+    <!--img2-->
+    <img class="mySlides" src="img3.jpg" alt="https://tinyurl.com/y9pxsnrj">
+    <!--img3-->
+
+    <!--The Buttons-->
+    <button class="button previous" id="previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="button next" id="next"><i class="fas fa-chevron-right"></i></button>
+
+  </div>
+
+
+<script>
+
+    var slideIndex = 1;
+    //set the slideIndex to 1
+
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    } //When the user clicks one of the buttons, call plusDivs().The plusDivs() function subtracts one or  adds one to the slideIndex. Subsequently, the value of slideIndex is passed into showDiv().
+
+    //The showDivs() display an element of the quasi-array, [i]-1. 
+    function showDivs(n) {
+      var x = document.getElementsByClassName("mySlides");
+      //returns a quasi-array of elements of .mySlides class. Recall that there are 3 images, img1, img2, img3.
+      if (n > x.length) {
+        slideIndex = 1;
+      };
+      //If the slideIndex is higher than the number of elements (x.length), the slideIndex is set to 1. However, because of the last-line of the showDivs() function, i.e. x[slideInex-1] the slideIndex effectively reduces by [1] to [0]. Therefore, img1 is displayed.
+      if (n < 1) {
+        slideIndex = x.length;
+      };
+      //If the slideIndex is less than 1 it is set to number of elements (x.length).
+      //so if the user clicks previous when slideIndex is 0, the slideIndex will be set to 3. Upon the last line x[slideIndex-1], the slideIndex will reduce to 2, calling the last array [2].
+      for (i = 0; i < x.length; i++) { //for every element in the quasi-array...
+        x[i].style.display = "none";
+        //Hides (display="none") all elements with the class name "mySlides"
+        //the .style property targets the CSS property of the element, and the .display targets the display property of the element
+      };
+      x[slideIndex - 1].style.display = "block";
+      //Only display (display="block") the element with the given slideIndex, while the rest of the elements remaining hidden. 
+    };
+
+    showDivs(slideIndex);
+    //When showDivs() is executed for the first time when the page load, before clicking the buttons, the img to be displayed will be that of [0].All images in the quasi-array are hidden except for n-1. See the last line of showDivs() -- x[slideIndex-1], i.e. 1-1 = [0].
+    //If placed before defining what showDiv() is, like what WC3 did, then essentially it is hoisting. JS allow elements to be invoked before defining them due to 2 stage creation and execution context. plusDiv() and showDics() are created at the creation context context. Will be executed later upon click. 
+  
+//INTERACTION WITH DOM
+  var buttonS = document.getElementsByClassName("button");
+buttonS[0].addEventListener("click", function() {
+    plusDivs(-1)
+    });
+buttonS[1].addEventListener("click", function() {
+      plusDivs(1)
+    });
+  
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

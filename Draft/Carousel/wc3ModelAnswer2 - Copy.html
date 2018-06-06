@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>W3.CSS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta email = "eugenetham1994@gmail.com">
+    
+  <!--keywords for search engine-->
+  <meta name = "Ratione Logica" content= "Legal Technology, legal AI, collaborative contract drafting">
+    
+ <!--CSS Stylesheet-->    
+  <link rel="stylesheet" type="text/css" href="carousel3.css"/>
+
+    
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+    
+<body>
+  
+<div class="container">
+<!--Navigation bar-->
+    <div class="topnav" id= "myTopnav">
+        <h2>Navbar</h2>
+      <h3>carousel below</h3>
+    </div>
+      
+<!--Carousell-->
+<!--With reference to https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+<div class="carousel">
+  
+      <!--the images-->
+      <img class="mySlides" src="img1.jpg" alt="https://tinyurl.com/ybmoux75"> <!--img1-->
+      <img class="mySlides" src="img2.jpg" alt="https://tinyurl.com/y7q4c666"><!--img2-->
+      <img class="mySlides" src="img3.jpg" alt= "https://tinyurl.com/y9pxsnrj"><!--img3-->
+  
+  <!--The Buttons-->
+  <button class="button previous" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="button next" onclick="plusDivs(1)">&#10095;</button>
+    <!--the &#10094 represents the HTML code for ASCII Arrows--!>
+    <!--on click, execute plusDiv(n)-->
+</div>
+      
+<!--Product 1 on the left-->
+    <section class="left">
+      <h2>Left</h2>
+    </section>
+      
+<!--Product 2 on the right-->
+    <section class="right">
+      <h2>Right</h2>
+    </section>
+
+<!--Footer-->
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+
+
+
+</div><!--end of .container-->
+
+<style>
+  
+/*CSS GRID*/
+.container {
+    display: grid;
+    position: relative;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+                    "topnav topnav"
+                    "carousel carousel"
+                    "left right"
+                    "footer footer";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 1fr 0.5fr 0.25fr;    /*HOW TO GET RID OF THE EXTRA SPACE BETWEEN THE NAVBAR AND THE GRID? Tried setting it to max-content and auto to set the height of .topnav to be equal to its content, but it does not work -- end up overlapping*/
+    justify-content: center;
+    }
+
+.topnav {
+  background-color: beige;
+  grid-area: topnav;
+}
+
+.carousel {
+    background-color: cornflowerblue;
+    grid-area: carousel;
+    position: relative;   /*to center the buttons so that the button that .carousel as its parent, rather than the entire document*/
+}
+
+    .img {
+        width: 100%;
+    }
+
+.left {
+  background-color: cornflowerblue;
+	grid-area: left;
+}
+
+.right {
+  background-color: beige;
+  grid-area: right;
+}
+
+footer {
+  background-color: beige;
+  grid-area: footer;
+}
+
+  /*Carousel*/
+    .button {
+    font-size: 48px;
+    position: absolute;   /*recall concept of relative child within absolute parent*/
+    color: red; /*testing purposes*/
+  }
+
+  .button.previous {
+    left: 10px;
+    top: 50%;
+  }
+
+  .button.next {
+    right: 10px;
+    top: 50%;
+  }
+
+  
+  </style>
+  
+<script>
+var slideIndex = 1;
+//set the slideIndex to 1
+    
+showDivs(slideIndex);
+//Hoisting! JS allow elements to be invoked before defining them due to 2 stage creation and execution context. plusDiv() and showDics() are created at the creation context context. Will be executed later upon click. 
+    
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+////When the user clicks one of the buttons call plusDivs().The plusDivs() function subtracts one or  adds one to the slideIndex.
+
+ //Then call showDivs() to display the first element  of the quasi-array. See the last line of showDivs() -- x[slideIndex-1], i.e. 1-1 = [0].
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+//returns a quasi-array of elements of .mySlides class
+  if (n > x.length) {slideIndex = 1}
+//If the slideIndex is higher than the number of elements (x.length), the slideIndex is set to 1. However, because of the last-line of the showDivs() function, i.e. x[slideInex-1] the slideIndex effectively reduces by 1 to 0. Therefore, img1 is displayed.
+  if (n < 1) {slideIndex = x.length}
+//If the slideIndex is less than 1 it is set to number of elements (x.length).
+    //so if the user clicks previous when slideIndex is 0, the slideIndex will be set to 3. Upon the last line x[slideIndex-1], the slideIndex will reduce to 2, calling the last array [2].
+  for (i = 0; i < x.length; i++) {//for every element in the quasi-array...
+     x[i].style.display = "none";  
+      //Hides (display="none") all elements with the class name "mySlides"
+        //the .style property targets the CSS property of the element, and the .display targets the display property of the element
+  }
+  x[slideIndex-1].style.display = "block";  
+    //Only display (display="block") the element with the given slideIndex, while the rest of the elements remaining hidden. 
+}
+</script>
+
+</body>
+</html>
+  
