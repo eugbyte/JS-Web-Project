@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Completed Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta email="eugenetham1994@gmail.com">
+
+  <!--keywords for search engine-->
+  <meta name="Ratione Logica" content="Legal Technology, legal AI, collaborative contract drafting">
+
+  <!--CSS Stylesheet-->
+  <link rel="stylesheet" type="text/css" href="homePage.css" />
+
+
+  <!--Font awesome icons-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!--A navigation bar is basically a list of links, so using the <ul> and <li> elements makes sense-->
+    <div class="topnav" id="myTopnav">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#Contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+
+        <!--Dropdown Nabar-->
+        <li class="dropdown">
+          <button class="dropbtn">Dropdown <i class="fa fa-caret-down"></i>
+            <!--javascript:void(0) returns undefined. JavaScript void(0) prevents the browser from loading a new page (or refreshing the current page). To prevent unwanted side effects from js functions upon clicking. For prudential purpose.-->
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </li>
+
+        <!--Responsive toggle button-->
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        <!--cannot use <li> to enclose this icon. The CSS does not work. WHY DOES ENCLOSING THE .icon IN A <li>tag, LIKE THE REST OF THE <a>, RENDER THE CSS TARGETTING .icon INEFFECTIVE? Online examples also excluded the toggle button form li-->
+      </ul>
+    </div>
+
+
+    <!--Carousell-->
+    <!--With reference to https://www.w3schools.com/w3css/w3css_slideshow.asp-->
+    <div class="carousel">
+
+      
+      <!--Text-->
+      <p class= "captionText">We aim to simplify and facilitate the work of lawyers.</p>
+      
+      <!--the images-->
+      <img class="mySlides" src="img1.jpg" alt="https://tinyurl.com/ybmoux75">
+      <!--img1-->
+      <img class="mySlides" src="img2.jpg" alt="https://tinyurl.com/y7q4c666">
+      <!--img2-->
+      <img class="mySlides" src="img3.jpg" alt="https://tinyurl.com/y9pxsnrj">
+      <!--img3-->
+
+      <!--The Buttons-->
+      <button class="button previous" id="previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="button next" id="next"><i class="fas fa-chevron-right"></i></button>
+
+      
+      
+      <!--onclick="plusDivs(-1)"-->
+
+      <!--<button class="button previous">&#10094;</button>
+  <button class="button next">&#10095;</button>
+    <!--the &#10094 represents the HTML code for ASCII Arrows--!>
+    <!--on click, execute plusDiv(n)-->
+      
+      
+      
+    </div>
+
+    <!--Product 1 on the left-->
+    <div class="left" id= "news">
+      <h2>Left</h2>
+      <img src="imgLeft.png" alt="from https://zapier.com/blog/writing-editing-apps">
+      <h4 id="estimateLeft">Average reading time: __min</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec dapibus ligula. Mauris at tincidunt diam. Nullam purus risus, cursus sit amet ante eget, pulvinar laoreet leo. Vestibulum vulputate ligula sodales ante semper semper. Donec ac turpis sit amet lectus mattis ornare. Sed scelerisque tristique massa, id dapibus lacus. Donec quis ex a tortor cursus consequat non vitae ligula. Quisque non dolor at felis ultrices interdum at eget elit.</p>
+      <p>This is the second paragraph</p>
+    </div>
+
+    <!--Product 2 on the right-->
+    <div class="right">
+      <h2>Right</h2>
+      <img src="imgRight.jpg" alt="from https://abovethelaw.com/2017/07/legal-research-and-ai-looking-toward-the-future/">
+      <h4 class="estimateRight">Average reading time: __min</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec dapibus ligula. Mauris at tincidunt diam. Nullam purus risus, cursus sit amet ante eget, pulvinar laoreet leo. Vestibulum vulputate ligula sodales ante semper semper. Donec ac turpis sit amet lectus mattis ornare. Sed scelerisque tristique massa, id dapibus lacus. Donec quis ex a tortor cursus consequat non vitae ligula. Quisque non dolor at felis ultrices interdum at eget elit.</p>
+      <p>This is the second paragraph</p>
+    </div>
+
+
+    <!--Form Intercom-->
+    <!--With reference to https://www.w3schools.com/css/tryit.asp?filename=trycss_forms-->
+    <form class="intercom" id="Contact">
+      <h3>Contact Us</h3>
+      <label for="email">Your Email</label>
+      <!--The <label> tag. The <label> tag defines a label for an <input> element. The "for" attribute of the <label> tag should be equal to the id attribute of the related element to bind them together. Purpose of label tag is hat if the user clicks on the text within the <label> element, it toggles the control.-->
+      <input type="text" id="email" name="email" placeholder="Type your email here">
+
+      <label for="feedback">Questions or Feedback</label>
+      <textarea id="feedback" name="feedback" placeholder="Type your comments here"></textarea>
+
+      <input type="submit" value="Submit">
+
+    </form>
+
+
+    <!--Footer-->
+    <footer>
+      <p>ABC COMPANY | ALL RIGHTS RESERVED | © 2018</p>
+      <div class="social_icons">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-twitter"></a>
+      </div>
+    </footer>
+
+
+
+  </div>
+  <!--end of .container-->
+
+
+  <!--JS src-->
+  <script src="homepage.js"></script>
+
+</body>
+
+</html>
