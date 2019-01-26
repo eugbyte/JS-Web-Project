@@ -1,2 +1,2 @@
-# WebProject2
-Legal Tech
+# WebProject using vanilla JS, HTML, CSS
+No Javascript Libraries used
